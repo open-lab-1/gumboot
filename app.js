@@ -1,8 +1,8 @@
 import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
 
 // Renseigner ces deux valeurs après la création du projet Supabase.
-const SUPABASE_URL = '';
-const SUPABASE_ANON_KEY = '';
+const SUPABASE_URL = 'https://kognbiyakrjbyyoasyob.supabase.co';
+const SUPABASE_ANON_KEY = 'sb_publishable_C5q0uxj46aG-fgAcvr0rbA_COceXaQr';
 const configured = Boolean(SUPABASE_URL && SUPABASE_ANON_KEY);
 const supabase = configured ? createClient(SUPABASE_URL, SUPABASE_ANON_KEY) : null;
 
@@ -15,7 +15,7 @@ function initials(s='G'){return s.trim().slice(0,1).toUpperCase()||'G'}
 function empty(t){return '<div class="empty">'+esc(t)+'</div>'}
 function section(title,action=''){return '<div class="section-head"><h3>'+title+'</h3>'+action+'</div>'}
 function addButton(label){return '<button class="action" data-add="'+label+'">＋ Ajouter</button>'}
-async function load(table){if(!configured||!state.user)return;const {data,error}=await supabase.from(table).select('*').order('created_at',{ascending:false}).limit(100);if(!error)state.data[table]=data||[]}
+async function load(table){if(!configured||!state.user)return;const source=table==='members'?'group_members':table;const {data,error}=await supabase.from(source).select('*').order('created_at',{ascending:false}).limit(100);if(!error)state.data[table]=data||[]}
 async function refresh(){if(!configured)return;for(const t of ['messages','research','tasks','events','media','steps','votes','dictionary','files','members'])await load(t);render()}
 function row(title,sub='',tag=''){return '<div class="list-row"><div><b>'+esc(title)+'</b><small>'+esc(sub)+'</small></div>'+(tag?'<span class="tag">'+esc(tag)+'</span>':'')+'</div>'}
 function home(){const d=state.data;return '<div class="welcome"><p class="eyebrow">BIENVENUE DANS VOTRE ESPACE</p><h3>Un projet, quatre membres, une même énergie.</h3><p>Centralisez vos idées, vos recherches et votre chorégraphie de Gumboot. Tout avance ensemble, au même endroit.</p></div><div class="stats"><div class="stat"><span>Recherches</span><b>'+d.research.length+'</b></div><div class="stat"><span>Tâches</span><b>'+d.tasks.length+'</b></div><div class="stat"><span>Idées chorégraphie</span><b>'+d.steps.length+'</b></div><div class="stat"><span>Messages</span><b>'+d.messages.length+'</b></div></div><div class="panel-grid"><div class="panel"><h3>Dernières recherches</h3><div class="list">'+(d.research.length?d.research.slice(0,4).map(x=>row(x.title,x.source||'Ajouté au carnet','Recherche')).join(''):empty('Vos découvertes sur le Gumboot apparaîtront ici.'))+'</div></div><div class="panel"><h3>À faire prochainement</h3><div class="list">'+(d.tasks.length?d.tasks.slice(0,4).map(x=>row(x.title,x.assignee||'À répartir',x.done?'Terminé':'À faire')).join(''):empty('Ajoutez les premières tâches du groupe.'))+'</div></div></div><div class="section-head"><h3>Accès rapide</h3></div><div class="cards"><div class="tile"><span class="symbol">◌</span><h4>Échanger</h4><p>Discutez et partagez vos idées avec le groupe.</p><button class="action" data-go="chat">Ouvrir la discussion →</button></div><div class="tile"><span class="symbol">♬</span><h4>Construire la danse</h4><p>Organisez les parties et les mouvements.</p><button class="action" data-go="choreo">Voir la chorégraphie →</button></div><div class="tile"><span class="symbol">◉</span><h4>Décider ensemble</h4><p>Faites voter les quatre membres.</p><button class="action" data-go="votes">Voir les votes →</button></div></div>'}
