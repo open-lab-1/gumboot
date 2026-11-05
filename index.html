@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#f6f8fb"><meta name="description" content="Espace privé de travail du groupe Gumboot Project.">
+  <title>Gumboot Project</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="login-screen" class="login-screen">
+    <div class="login-card">
+      <div class="brand-mark">G</div><p class="eyebrow">ESPACE COLLABORATIF PRIVÉ</p>
+      <h1>Gumboot Project</h1><p class="muted">Tout votre projet de danse, au même endroit.</p>
+      <form id="login-form"><label>Adresse e-mail<input id="email" type="email" autocomplete="username" required placeholder="vous@exemple.fr"></label><label>Mot de passe<input id="password" type="password" autocomplete="current-password" required placeholder="Votre mot de passe"></label><button class="primary wide" type="submit">Se connecter</button><p id="login-error" class="error" role="alert"></p></form>
+      <p class="tiny muted">Accès réservé aux quatre membres du groupe.</p>
+    </div>
+  </div>
+  <div id="app" class="app-shell hidden">
+    <aside class="sidebar">
+      <a class="brand" href="#"><span class="brand-mark small">G</span><span><b>Gumboot</b><small>PROJECT · GROUPE PRIVÉ</small></span></a>
+      <div class="side-label">ESPACE DE TRAVAIL</div>
+      <nav id="navigation">
+        <button class="nav-item active" data-page="home"><span>⌂</span>Vue d'ensemble</button>
+        <button class="nav-item" data-page="chat"><span>◌</span>Discussion</button>
+        <button class="nav-item" data-page="research"><span>▤</span>Recherches</button>
+        <button class="nav-item" data-page="tasks"><span>✓</span>Tâches</button>
+        <button class="nav-item" data-page="calendar"><span>▦</span>Calendrier</button>
+        <button class="nav-item" data-page="media"><span>▷</span>Vidéos & musique</button>
+        <button class="nav-item" data-page="choreo"><span>♬</span>Chorégraphie</button>
+        <button class="nav-item" data-page="votes"><span>◉</span>Votes du groupe</button>
+        <button class="nav-item" data-page="dictionary"><span>Aa</span>Dictionnaire</button>
+        <button class="nav-item" data-page="files"><span>▧</span>Dossier partagé</button>
+        <button class="nav-item" data-page="members"><span>♙</span>Les 4 membres</button>
+      </nav>
+      <div class="sidebar-bottom"><div class="online-dot"></div><span>Groupe privé</span><button id="logout" class="logout">Déconnexion</button></div>
+    </aside>
+    <main class="main-area">
+      <header class="topbar"><div><p class="eyebrow">VOTRE ESPACE DE PROJET</p><h2 id="page-title">Vue d'ensemble</h2></div><div class="user-chip"><span class="avatar" id="user-avatar">G</span><span id="user-email">Membre</span></div></header>
+      <section id="page-content" class="content"></section>
+      <footer>Gumboot Project <span>·</span> Un projet, quatre membres.</footer>
+    </main>
+  </div>
+  <dialog id="item-dialog"><form method="dialog" id="item-form"><div class="dialog-head"><h3 id="dialog-title">Ajouter</h3><button class="icon-button" value="cancel" aria-label="Fermer">×</button></div><div id="dialog-fields"></div><div class="dialog-actions"><button class="secondary" value="cancel">Annuler</button><button class="primary" id="dialog-submit" value="default">Enregistrer</button></div></form></dialog>
+  <div id="toast" class="toast" role="status"></div>
+  <script type="module" src="app.js"></script>
+</body></html>
