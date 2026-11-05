@@ -16,6 +16,18 @@
       <p class="tiny muted">Connexion par identifiant · Accès réservé aux quatre membres du groupe.</p>
     </div>
   </div>
+  <div id="password-change-screen" class="login-screen hidden">
+    <div class="login-card">
+      <div class="brand-mark">G</div><p class="eyebrow">SÉCURISATION DU COMPTE</p>
+      <h1>Nouveau mot de passe</h1><p class="muted">Choisissez un mot de passe personnel pour continuer.</p>
+      <form id="password-change-form">
+        <label>Nouveau mot de passe<input id="new-password" type="password" autocomplete="new-password" required minlength="10" placeholder="10 caractères minimum"></label>
+        <label>Confirmer le mot de passe<input id="confirm-new-password" type="password" autocomplete="new-password" required minlength="10" placeholder="Répétez le mot de passe"></label>
+        <button class="primary wide" type="submit">Enregistrer et continuer</button>
+        <p id="password-change-error" class="error" role="alert"></p>
+      </form>
+    </div>
+  </div>
   <div id="app" class="app-shell hidden">
     <aside class="sidebar">
       <a class="brand" href="#"><span class="brand-mark small">G</span><span><b>Gumboot</b><small>PROJECT · GROUPE PRIVÉ</small></span></a>
